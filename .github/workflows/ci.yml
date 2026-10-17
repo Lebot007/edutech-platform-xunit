@@ -1,0 +1,82 @@
+name: CI - Build & Tests
+
+# ============================================================================
+# Integração Contínua da EduTechPlatform (Dev 3 - DevOps/Versionamento)
+# ----------------------------------------------------------------------------
+# Garante que TODA alteração no repositório (push no main, Pull Request ou
+# execução manual) seja restaurada, compilada e testada com o .NET 10.
+# É o que impede que um commit quebrado (ex.: um serviço removido por engano)
+# permaneça no main sem que a equipe perceba.
+#
+# Etapas:
+#   1. checkout do código;
+#   2. instalação do SDK .NET definida no global.json (mesma versão do dev);
+#   3. dotnet restore -> dependências NuGet;
+#   4. dotnet build   -> compilação em Release, com warnings tratados como erro;
+#   5. dotnet test    -> 15 cenários parametrizados ([Theory] + [InlineData]);
+#   6. cobertura      -> coverlet (100% de linhas e branches nos serviços);
+#   7. artefatos      -> TRX + Cobertura XML para auditoria da qualidade.
+# ============================================================================
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    name: Build & Test (.NET 10)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      # Sem `dotnet-version`: a action lê automaticamente o global.json da raiz
+      # do repositório, garantindo que o CI use exatamente o mesmo SDK do time.
+      - name: Configurar o SDK do .NET (versão do global.json)
+        uses: actions/setup-dotnet@v6
+
+      - name: Exibir versões do ambiente
+        run: |
+          dotnet --version
+          dotnet --list-sdks
+
+      - name: Restaurar dependências (dotnet restore)
+        run: dotnet restore
+
+      - name: Compilar (dotnet build -c Release)
+        run: dotnet build --configuration Release --no-restore /warnaserror
+
+      - name: Executar testes + cobertura (dotnet test)
+        run: >-
+          dotnet test --configuration Release --no-build
+          --logger "trx;LogFileName=test-results.trx"
+          --results-directory TestResults
+          --collect:"XPlat Code Coverage"
+          --settings coverlet.runsettings
+
+      - name: Publicar resultado dos testes (artefato)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-trx
+          path: TestResults/**/*.trx
+          if-no-files-found: warn
+
+      - name: Publicar relatório de cobertura (artefato)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-coverage-cobertura
+          path: TestResults/**/coverage.cobertura.xml
+          if-no-files-found: warn

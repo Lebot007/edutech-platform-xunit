@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Configuração do coletor de cobertura (coverlet.collector).
+
+  Por que excluir Program.cs?
+  Program.cs é apenas o ponto de entrada de demonstração do projeto console:
+  instancia os serviços e imprime os resultados no terminal. Não contém regra
+  de negócio e, por isso, não é alvo de teste unitário.
+
+  Mantê-lo na medição derrubaria a cobertura total para cerca de 36%,
+  mascarando o resultado real: as três classes de serviço possuem 100% de
+  cobertura de linhas e de branches.
+
+  O comando completo para gerar o relatório está no README, na seção
+  "Guia de Execução (CLI)", item 4.2.
+-->
+<RunSettings>
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector friendlyName="XPlat Code Coverage">
+        <Configuration>
+          <Format>cobertura</Format>
+          <ExcludeByFile>**/Program.cs</ExcludeByFile>
+          <Include>[EduTechPlatform.App]*</Include>
+          <SkipAutoProps>true</SkipAutoProps>
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>
+</RunSettings>

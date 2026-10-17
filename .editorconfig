@@ -1,0 +1,67 @@
+# ============================================================================
+# EditorConfig - padronização de estilo de código da EduTechPlatform (Dev 3)
+# https://editorconfig.org
+# ----------------------------------------------------------------------------
+# Garante que a INDENTAÇÃO e as convenções de código sejam idênticas entre
+# VS Code, Visual Studio e Rider, independente do sistema operacional de cada
+# integrante da equipe (requisito da lista: "algoritmos devidamente indentados").
+# ============================================================================
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+[*.{csproj,props,targets,slnx,runsettings,config,yml,yaml,json}]
+indent_size = 2
+
+[*.md]
+trim_trailing_whitespace = false
+
+# ---------------------------------------------------------------------------
+# C#
+# ---------------------------------------------------------------------------
+[*.cs]
+# Organização dos using
+dotnet_sort_system_directives_first = true
+dotnet_separate_import_directive_groups = false
+
+# Preferências de linguagem
+csharp_style_var_for_built_in_types = true:suggestion
+csharp_style_var_when_type_is_apparent = true:suggestion
+csharp_style_namespace_declarations = file_scoped:warning
+csharp_style_expression_bodied_methods = when_on_single_line:suggestion
+csharp_prefer_braces = true:warning
+csharp_new_line_before_open_brace = all
+csharp_indent_case_contents = true
+csharp_indent_switch_labels = true
+
+# Nomenclatura: campos privados com prefixo "_"
+dotnet_naming_rule.camelo_para_campos.severity = warning
+dotnet_naming_rule.camelo_para_campos.symbols = campos_privados
+dotnet_naming_rule.camelo_para_campos.style = prefixo_underscore
+dotnet_naming_symbols.campos_privados.applicable_kinds = field
+dotnet_naming_symbols.campos_privados.applicable_accessibilities = private
+dotnet_naming_style.prefixo_underscore.required_prefix = _
+dotnet_naming_style.prefixo_underscore.capitalization = camel_case
+
+# Nomenclatura: PascalCase para tipos e membros públicos
+dotnet_naming_rule.pascal_para_tipos.severity = warning
+dotnet_naming_rule.pascal_para_tipos.symbols = tipos_e_membros
+dotnet_naming_rule.pascal_para_tipos.style = pascal
+dotnet_naming_symbols.tipos_e_membros.applicable_kinds = class, struct, interface, enum, method, property, event, delegate
+dotnet_naming_symbols.tipos_e_membros.applicable_accessibilities = public, internal, protected, protected_internal
+dotnet_naming_style.pascal.capitalization = pascal_case
+
+# Nomenclatura: CONSTANTES_EM_MAIUSCULAS
+dotnet_naming_rule.constantes_em_maiusculas.severity = suggestion
+dotnet_naming_rule.constantes_em_maiusculas.symbols = constantes
+dotnet_naming_rule.constantes_em_maiusculas.style = tudo_maiusculo
+dotnet_naming_symbols.constantes.applicable_kinds = field
+dotnet_naming_symbols.constantes.required_modifiers = const
+dotnet_naming_style.tudo_maiusculo.capitalization = all_upper
+dotnet_naming_style.tudo_maiusculo.word_separator = _
