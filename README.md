@@ -23,6 +23,7 @@ O projeto demonstra boas práticas de qualidade de software:
 ## Sumário
 
 - [Visão Geral](#visão-geral)
+- [Equipe](#equipe)
 - [Estrutura da Solução](#estrutura-da-solução)
 - [Requisitos do Ambiente](#requisitos-do-ambiente)
 - [Classes de Serviço](#classes-de-serviço--responsabilidades-dev-1)
@@ -44,6 +45,19 @@ A **EduTechPlatform** apoia a gestão acadêmica e financeira de uma instituiç�
 | Matrícula/Financeiro | `MatriculaFinanceiraService` | Valor da mensalidade (bolsa/pontualidade) e elegibilidade de rematrícula |
 
 A camada de qualidade (`EduTechPlatform.Tests`) valida **todas** as regras acima por meio de testes unitários parametrizados, executados com `dotnet test`.
+
+## Equipe
+
+Integrantes responsáveis pelo desenvolvimento da **EduTechPlatform**:
+
+| # | Integrante | Papel no projeto | GitHub |
+|---|---|---|---|
+| 1 | **Rafael Luiz Ferreira de Souza** | Dev 1 — Regras de Serviço (Backend/Core) | [@rafaellfsouza](https://github.com/rafaellfsouza) |
+| 2 | **João Vitor Alves Rodrigues** | Dev 2 — Qualidade e Testes (xUnit) | [@Lebot007](https://github.com/Lebot007) |
+| 3 | **Pietro Cardoso de Oliveira** | Dev 3 — Documentação e DevOps/Versionamento | [@Pietro2820](https://github.com/Pietro2820) |
+| 4 | **Pedro Henrique Martins** | Dev 3 — Documentação e DevOps/Versionamento | [@PedroHenriqueM2005](https://github.com/PedroHenriqueM2005) |
+
+> A descrição detalhada das entregas de cada papel (arquivos e responsabilidades) está em [Divisão do Trabalho](#divisão-do-trabalho).
 
 ## Estrutura da Solução
 
@@ -272,13 +286,13 @@ O resultado fica visível no badge no topo deste README e em **[Actions](https:/
 
 ## Divisão do Trabalho
 
-A lista de exercícios prevê equipes de **até 05 alunos** com **entregas individuais**. Os papéis foram divididos assim:
+A lista de exercícios prevê equipes de **até 05 alunos** com **entregas individuais**. Os papéis foram divididos entre os **4 integrantes** da equipe ([Equipe](#equipe)) assim:
 
-| Papel | Responsabilidade | Arquivos entregues |
-|---|---|---|
-| **Dev 1** | Regras de Serviço (Backend / Core) | `EduTechPlatform.slnx`, `EduTechPlatform.App/*` (`NotaDesempenhoService`, `FrequenciaService`, `MatriculaFinanceiraService`, `Program.cs`) |
-| **Dev 2** | Qualidade e Testes (xUnit) | `EduTechPlatform.Tests/*`, `coverlet.runsettings`, `docs/RELATORIO-QUALIDADE.md` |
-| **Dev 3** | Documentação e DevOps / Versionamento | `README.md`, `LICENSE`, `.gitignore`, `.gitattributes`, `global.json`, `.editorconfig`, `.github/workflows/ci.yml`, `publicar.ps1`, `publicar.sh` |
+| Papel | Responsabilidade | Integrante(s) | Arquivos entregues |
+|---|---|---|---|
+| **Dev 1** | Regras de Serviço (Backend / Core) | Rafael Luiz Ferreira de Souza | `EduTechPlatform.slnx`, `EduTechPlatform.App/*` (`NotaDesempenhoService`, `FrequenciaService`, `MatriculaFinanceiraService`, `Program.cs`) |
+| **Dev 2** | Qualidade e Testes (xUnit) | João Vitor Alves Rodrigues | `EduTechPlatform.Tests/*`, `coverlet.runsettings`, `docs/RELATORIO-QUALIDADE.md` |
+| **Dev 3** | Documentação e DevOps / Versionamento | Pietro Cardoso de Oliveira e Pedro Henrique Martins | `README.md`, `LICENSE`, `.gitignore`, `.gitattributes`, `global.json`, `.editorconfig`, `.github/workflows/ci.yml`, `publicar.ps1`, `publicar.sh` |
 
 **Contribuidores do repositório:** cada integrante precisa ter ao menos um commit autoral para aparecer na lista de contribuidores → **[Contributors](https://github.com/Lebot007/edutech-platform-xunit/graphs/contributors)**.
 
@@ -296,3 +310,4 @@ A lista de exercícios prevê equipes de **até 05 alunos** com **entregas indiv
 ## Licença
 
 Este projeto está licenciado sob a [MIT License](LICENSE).
+
